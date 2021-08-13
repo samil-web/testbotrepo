@@ -9,7 +9,8 @@ import numpy as np
 from transform_image import transform_single_image
 
 
-API_KEY = "1907978377:AAGmOeo7-uGjTGU2AEx9A59QHptTNNrD2Ts"
+PORT = int(os.environ.get('PORT', 5000))
+TOKEN = "1907978377:AAGmOeo7-uGjTGU2AEx9A59QHptTNNrD2Ts"
 bot = telebot.TeleBot(API_KEY)
 
 loaded_model = joblib.load('enhanced_model.sav')
@@ -76,4 +77,7 @@ def image_sent(message):
         bot.send_message(message.chat.id,"The bot played " + computer_action + "\n you played "+ user_action + "\n Rock smashes scissors! \n You lose.")
         computer_action = random.choice(possible_actions)
 
-bot.polling()
+updater.start_webhook(listen="0.0.0.0",
+                          port=int(PORT),
+                          url_path=TOKEN)
+updater.bot.setWebhook('https://yourherokuappname.herokuapp.com/' + TOKEN)
