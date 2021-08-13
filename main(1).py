@@ -9,7 +9,7 @@ import numpy as np
 from transform_image import transform_single_image
 
 
-API_KEY = os.getenv('API_KEY')
+API_KEY = "API_KEY": "1907978377:AAGmOeo7-uGjTGU2AEx9A59QHptTNNrD2Ts"
 bot = telebot.TeleBot(API_KEY)
 
 loaded_model = joblib.load('enhanced_model.sav')
